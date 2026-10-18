@@ -1,10 +1,8 @@
 import { usePortfolio } from '../../context/PortfolioContext';
-import { useState, useEffect } from 'react';
 import { Mail, ArrowUpRight } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { getProfile } from '../../services/db';
-import type { Profile } from '../../types/profile';
 import FadeIn from '../animations/FadeIn';
+import { formatExternalUrl } from '../../utils/url';
 
 const ContactSection = () => {
   const { profile } = usePortfolio();
@@ -55,7 +53,7 @@ const ContactSection = () => {
             
             {profile.githubUrl && (
               <a 
-                href={profile.githubUrl}
+                href={formatExternalUrl(profile.githubUrl)}
                 target="_blank" rel="noreferrer"
                 className="group relative flex items-center justify-between glass-panel p-6 rounded-3xl w-full md:w-1/3 hover:bg-[#a78bfa]/10 hover:border-[#a78bfa]/40 transition-all duration-300"
               >
@@ -75,7 +73,7 @@ const ContactSection = () => {
 
             {profile.linkedinUrl && (
               <a 
-                href={profile.linkedinUrl}
+                href={formatExternalUrl(profile.linkedinUrl)}
                 target="_blank" rel="noreferrer"
                 className="group relative flex items-center justify-between glass-panel p-6 rounded-3xl w-full md:w-1/3 hover:bg-[#a78bfa]/10 hover:border-[#a78bfa]/40 transition-all duration-300"
               >

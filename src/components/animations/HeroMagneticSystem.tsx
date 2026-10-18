@@ -182,7 +182,7 @@ const HeroMagneticSystem: React.FC = () => {
     };
   }, [isMobile]);
 
-  const handleNodeClick = (e: React.MouseEvent, index: number) => {
+  const handleNodeClick = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -224,7 +224,7 @@ const HeroMagneticSystem: React.FC = () => {
           <div
             key={node.id}
             ref={(el) => { nodesRef.current[index] = el; }}
-            onClick={(e) => handleNodeClick(e, index)}
+            onClick={(e) => handleNodeClick(e)}
             className={`absolute top-0 left-0 flex items-center justify-center w-12 h-12 rounded-2xl bg-[#0f0f13]/80 backdrop-blur-md border border-[#a78bfa]/20 shadow-lg cursor-crosshair pointer-events-auto transition-colors duration-300 group
               ${isMobile ? '' : 'will-change-transform'}
             `}

@@ -1,12 +1,11 @@
 import { usePortfolio } from '../../context/PortfolioContext';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Code as Github, ArrowRight, ChevronRight, ChevronLeft } from 'lucide-react';
-import type { Project } from '../../types/project';
-import { getProjects } from '../../services/db';
 import FadeIn from '../animations/FadeIn';
 import { getTechIcon } from '../../utils/getTechIcon';
+import { formatExternalUrl } from '../../utils/url';
 
 const ProjectsSection = () => {
   const { projects } = usePortfolio();
@@ -149,12 +148,12 @@ const ProjectsSection = () => {
                     </Link>
                     <div className="flex gap-4">
                       {currentProject.githubUrl && (
-                        <a href={currentProject.githubUrl} target="_blank" rel="noreferrer" className="p-4 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:border-[#a78bfa]/50 transition-colors">
+                        <a href={formatExternalUrl(currentProject.githubUrl)} target="_blank" rel="noreferrer" className="p-4 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:border-[#a78bfa]/50 transition-colors">
                           <Github size={20} />
                         </a>
                       )}
                       {currentProject.liveUrl && (
-                        <a href={currentProject.liveUrl} target="_blank" rel="noreferrer" className="p-4 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:border-[#a78bfa]/50 transition-colors">
+                        <a href={formatExternalUrl(currentProject.liveUrl)} target="_blank" rel="noreferrer" className="p-4 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:border-[#a78bfa]/50 transition-colors">
                           <ExternalLink size={20} />
                         </a>
                       )}
