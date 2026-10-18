@@ -4,6 +4,7 @@ import { ArrowLeft, ExternalLink, Code as Github } from 'lucide-react';
 import type { Project } from '../../types/project';
 import { getProjectBySlug } from '../../services/db';
 import FadeIn from '../../components/animations/FadeIn';
+import { formatExternalUrl } from '../../utils/url';
 
 const ProjectDetails = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -126,7 +127,7 @@ const ProjectDetails = () => {
                 <div className="space-y-3">
                   {project.githubUrl && (
                     <a 
-                      href={project.githubUrl} 
+                      href={formatExternalUrl(project.githubUrl)} 
                       target="_blank" 
                       rel="noreferrer"
                       className="flex items-center w-full px-4 py-3 bg-white/5 hover:bg-white/10 rounded-xl transition-colors text-white group"
@@ -137,7 +138,7 @@ const ProjectDetails = () => {
                   )}
                   {project.liveUrl && (
                     <a 
-                      href={project.liveUrl} 
+                      href={formatExternalUrl(project.liveUrl)} 
                       target="_blank" 
                       rel="noreferrer"
                       className="flex items-center w-full px-4 py-3 bg-purple-500 hover:bg-purple-600 rounded-xl transition-colors text-white shadow-lg shadow-purple-500/20"

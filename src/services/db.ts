@@ -1,4 +1,4 @@
-import { collection, getDocs, query, orderBy, where, doc, getDoc } from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import type { Profile } from '../types/profile';
 import type { Skill } from '../types/skill';
@@ -46,6 +46,9 @@ export const fetchData = async <T>(
     }
 
     const snapshot = await getDocs(q);
+    if (snapshot.empty) {
+      return mockFallback;
+    }
     
     const results = snapshot.docs.map(doc => ({
       id: doc.id,
@@ -58,7 +61,7 @@ export const fetchData = async <T>(
     return results;
   } catch (error) {
     console.error(`Error fetching ${collectionName}:`, error);
-    return [];
+    return mockFallback;
   }
 };
 

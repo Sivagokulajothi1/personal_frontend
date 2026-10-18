@@ -42,18 +42,23 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden"
+    >
       {/* Premium Magnetic Cursor & Floating Code System */}
       <HeroMagneticSystem />
 
       <div className="container mx-auto px-6 md:px-12 z-10 text-center relative pb-32 pointer-events-none">
         <FadeIn delay={0.3} direction="up">
           <div className="relative inline-block mirror-reflection max-w-full pointer-events-auto">
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[10rem] font-black tracking-tighter leading-none mb-4 whitespace-nowrap overflow-hidden text-ellipsis">
-              <span className="text-white">{profile.name.split(" ")[0]}</span>{" "}
-              <span className="bg-gradient-to-br from-white via-[#c4b5fd] to-[#8b5cf6] bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(167,139,250,0.5)]">
-                {profile.name.split(" ").slice(1).join(" ")}
-              </span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[7.5rem] 2xl:text-[9rem] font-black tracking-tighter leading-[1.15] pb-3 sm:pb-4 mb-4 whitespace-nowrap overflow-visible">
+              <span className="inline-block text-white pb-1">{profile.name.split(" ")[0]}</span>{" "}
+              {profile.name.split(" ").length > 1 && (
+                <span className="inline-block bg-gradient-to-br from-white via-[#c4b5fd] to-[#8b5cf6] bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(167,139,250,0.5)] pb-1">
+                  {profile.name.split(" ").slice(1).join(" ")}
+                </span>
+              )}
             </h1>
           </div>
         </FadeIn>

@@ -1,8 +1,6 @@
 import { usePortfolio } from '../../context/PortfolioContext';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { Skill } from '../../types/skill';
-import { getSkills } from '../../services/db';
 import FadeIn from '../animations/FadeIn';
 import { getTechIcon } from '../../utils/getTechIcon';
 

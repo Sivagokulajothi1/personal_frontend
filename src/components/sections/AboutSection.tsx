@@ -1,5 +1,4 @@
 import { usePortfolio } from '../../context/PortfolioContext';
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import FadeIn from '../animations/FadeIn';
 import { Smartphone, Code, Cpu, Database } from 'lucide-react';

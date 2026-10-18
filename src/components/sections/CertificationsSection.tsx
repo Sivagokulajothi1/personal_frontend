@@ -1,9 +1,8 @@
 import { usePortfolio } from '../../context/PortfolioContext';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Award, ExternalLink, X, Maximize2 } from 'lucide-react';
 import type { Certification } from '../../types/certification';
-import { getCertifications } from '../../services/db';
 import FadeIn from '../animations/FadeIn';
 
 const CertificationsSection = () => {
