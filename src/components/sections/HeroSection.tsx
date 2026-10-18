@@ -51,35 +51,36 @@ const HeroSection = () => {
 
       <div className="container mx-auto px-6 md:px-12 z-10 text-center relative pb-32 pointer-events-none">
         <FadeIn delay={0.3} direction="up">
-          <div className="relative inline-block mirror-reflection max-w-full pointer-events-auto">
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[7.5rem] 2xl:text-[9rem] font-black tracking-tighter leading-[1.15] pb-3 sm:pb-4 mb-4 whitespace-nowrap overflow-visible">
-              <span className="inline-block text-white pb-1">{profile.name.split(" ")[0]}</span>{" "}
-              {profile.name.split(" ").length > 1 && (
-                <span className="inline-block bg-gradient-to-br from-white via-[#c4b5fd] to-[#8b5cf6] bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(167,139,250,0.5)] pb-1">
-                  {profile.name.split(" ").slice(1).join(" ")}
-                </span>
-              )}
-            </h1>
-          </div>
-        </FadeIn>
+          <div className="inline-flex flex-col items-start text-left max-w-full">
+            <div className="relative inline-block mirror-reflection max-w-full pointer-events-auto">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[7.5rem] 2xl:text-[9rem] font-black tracking-tighter leading-[1.15] pb-3 sm:pb-4 mb-2 whitespace-nowrap overflow-visible">
+                <span className="inline-block text-white pb-1">{profile.name.split(" ")[0]}</span>{" "}
+                {profile.name.split(" ").length > 1 && (
+                  <span className="inline-block bg-gradient-to-br from-white via-[#c4b5fd] to-[#8b5cf6] bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(167,139,250,0.5)] pb-1">
+                    {profile.name.split(" ").slice(1).join(" ")}
+                  </span>
+                )}
+              </h1>
+            </div>
 
-        <FadeIn delay={0.4} direction="up">
-          <div className="mt-8 md:mt-12 h-12 md:h-16 text-xl md:text-4xl font-light text-gray-300 flex flex-col md:flex-row items-center justify-center gap-2">
-            <span className="text-gray-400">Engineering</span>
-            <div className="relative inline-block w-full md:w-[600px] text-center md:text-left h-[40px] md:h-[50px] overflow-hidden">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={currentRole}
-                  initial={{ y: 40, opacity: 0, rotateX: 90 }}
-                  animate={{ y: 0, opacity: 1, rotateX: 0 }}
-                  exit={{ y: -40, opacity: 0, rotateX: -90 }}
-                  transition={{ duration: 0.5, ease: "circOut" }}
-                  className="absolute inset-0 font-medium text-[#c4b5fd] flex items-center justify-center md:justify-start"
-                  style={{ transformPerspective: 1000 }}
-                >
-                  {profile.roles[currentRole] || "Software Engineer"}
-                </motion.span>
-              </AnimatePresence>
+            {/* Role line directly aligned under 'S' */}
+            <div className="mt-2 md:mt-4 h-10 md:h-14 text-xl md:text-4xl font-light text-gray-300 flex items-center gap-2 md:gap-3 w-full">
+              <span className="text-gray-400 shrink-0">Engineering</span>
+              <div className="relative inline-block w-full md:w-[600px] h-[40px] md:h-[50px] overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={currentRole}
+                    initial={{ y: 40, opacity: 0, rotateX: 90 }}
+                    animate={{ y: 0, opacity: 1, rotateX: 0 }}
+                    exit={{ y: -40, opacity: 0, rotateX: -90 }}
+                    transition={{ duration: 0.5, ease: "circOut" }}
+                    className="absolute inset-0 font-medium text-[#c4b5fd] flex items-center justify-start text-left whitespace-nowrap"
+                    style={{ transformPerspective: 1000 }}
+                  >
+                    {profile.roles[currentRole] || "Software Engineer"}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
             </div>
           </div>
         </FadeIn>
