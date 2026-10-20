@@ -58,11 +58,11 @@ const ExperienceSection = () => {
                     >
                       <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
                         <div>
-                          <h3 className="text-2xl md:text-3xl font-black text-white group-hover:text-[#c4b5fd] transition-colors">{exp.position}</h3>
+                          <h3 className="text-2xl md:text-3xl font-black text-white group-hover:text-[#c4b5fd] transition-colors">{exp.position || exp.role}</h3>
                           <h4 className="text-xl text-[#a78bfa] font-bold mt-1 tracking-wide">{exp.company}</h4>
                         </div>
                         <span className="inline-block mt-4 md:mt-0 px-4 py-2 bg-[#a78bfa]/10 border border-[#a78bfa]/30 rounded-full text-xs font-bold tracking-widest text-[#c4b5fd] shadow-[0_0_15px_rgba(167,139,250,0.1)]">
-                          {exp.startDate} — {exp.current ? 'Present' : exp.endDate}
+                          {exp.startDate} — {exp.current ? 'Present' : (exp.endDate || 'Present')}
                         </span>
                       </div>
                       

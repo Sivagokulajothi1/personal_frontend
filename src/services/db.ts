@@ -6,33 +6,24 @@ import type { Project } from '../types/project';
 import type { Experience } from '../types/experience';
 import type { Education } from '../types/education';
 import type { Certification } from '../types/certification';
-import { 
-  mockProfile, 
-  mockSkills, 
-  mockProjects, 
-  mockExperience, 
-  mockEducation, 
-  mockCertifications 
-} from '../data/mockData';
 
-export const getProfile = async (): Promise<Profile> => {
+export const getProfile = async (): Promise<Profile | null> => {
   try {
     const docRef = doc(db, 'profiles', 'main');
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       return { id: docSnap.id, ...docSnap.data() } as Profile;
     }
-    console.warn("Profile document 'main' not found. Using fallback seed data.");
-    return mockProfile;
+    console.warn("Profile document 'main' not found in Firestore.");
+    return null;
   } catch (error) {
-    console.error("Error fetching profile:", error);
-    return mockProfile;
+    console.error("Error fetching profile from Firestore:", error);
+    return null;
   }
 };
 
 export const fetchData = async <T>(
   collectionName: string, 
-  mockFallback: T[],
   filterField?: string
 ): Promise<T[]> => {
   try {
@@ -47,7 +38,7 @@ export const fetchData = async <T>(
 
     const snapshot = await getDocs(q);
     if (snapshot.empty) {
-      return mockFallback;
+      return [];
     }
     
     const results = snapshot.docs.map(doc => ({
@@ -60,23 +51,23 @@ export const fetchData = async <T>(
     
     return results;
   } catch (error) {
-    console.error(`Error fetching ${collectionName}:`, error);
-    return mockFallback;
+    console.error(`Error fetching ${collectionName} from Firestore:`, error);
+    return [];
   }
 };
 
-export const getSkills = () => fetchData<Skill>('skills', mockSkills, 'visible');
-export const getProjects = () => fetchData<Project>('projects', mockProjects, 'published');
-export const getExperience = () => fetchData<Experience>('experience', mockExperience, 'visible');
-export const getEducation = () => fetchData<Education>('education', mockEducation, 'visible');
-export const getCertifications = () => fetchData<Certification>('certifications', mockCertifications, 'visible');
+export const getSkills = () => fetchData<Skill>('skills', 'visible');
+export const getProjects = () => fetchData<Project>('projects', 'published');
+export const getExperience = () => fetchData<Experience>('experience', 'visible');
+export const getEducation = () => fetchData<Education>('education', 'visible');
+export const getCertifications = () => fetchData<Certification>('certifications', 'visible');
 
 export const getProjectBySlug = async (slug: string): Promise<Project | null> => {
   try {
     const projects = await getProjects();
     return projects.find(p => p.slug === slug) || null;
   } catch (error) {
-    console.error("Error fetching project by slug:", error);
+    console.error("Error fetching project by slug from Firestore:", error);
     return null;
   }
 };
