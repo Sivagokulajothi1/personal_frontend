@@ -112,7 +112,7 @@ const ProjectDetails = () => {
               <div className="glass-panel p-6 rounded-2xl">
                 <h3 className="text-lg font-bold mb-4">Technologies Used</h3>
                 <div className="flex flex-wrap gap-2">
-                  {project.technologies.map(tech => (
+                  {(project.technologies || []).map(tech => (
                     <span key={tech} className="px-3 py-1.5 bg-white/5 rounded-lg text-sm text-gray-300 border border-white/5">
                       {tech}
                     </span>

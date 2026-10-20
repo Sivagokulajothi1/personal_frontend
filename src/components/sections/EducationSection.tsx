@@ -77,7 +77,7 @@ const EducationSection = () => {
                               {edu.institution}
                             </h4>
                             <span className="inline-block mt-2 md:mt-0 px-4 py-1.5 bg-[#a78bfa]/10 border border-[#a78bfa]/30 rounded-full text-xs font-bold tracking-widest text-[#c4b5fd]">
-                              {edu.startYear} — {edu.endYear || 'Present'}
+                              {edu.startYear || edu.startDate} — {edu.endYear || edu.endDate || 'Present'}
                             </span>
                           </div>
                           

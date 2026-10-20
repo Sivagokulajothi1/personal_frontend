@@ -21,13 +21,7 @@ const ProjectsSection = () => {
 
 
   if (!projects.length) {
-    return (
-      <section id="projects" className="py-32 relative z-10 bg-[#030305]">
-        <div className="container mx-auto px-6 md:px-12 text-center text-gray-500">
-          No published projects available.
-        </div>
-      </section>
-    );
+    return null;
   }
 
   const currentProject = projects[currentIndex];
@@ -95,12 +89,12 @@ const ProjectsSection = () => {
                       <div className="w-full aspect-video bg-black/50 flex flex-col items-center justify-center relative overflow-hidden">
                         {/* Placeholder tech layout */}
                         <div className="absolute inset-0 opacity-20 grid grid-cols-4 gap-4 p-8 transform rotate-12 scale-150">
-                           {currentProject.technologies.map((t, i) => (
+                           {(currentProject.technologies || []).map((t, i) => (
                              <div key={i} className="text-6xl flex items-center justify-center text-white/50">{getTechIcon(t)}</div>
                            ))}
                         </div>
                         <h3 className="text-4xl font-black text-white relative z-10 tracking-widest uppercase opacity-50">
-                          {currentProject.title.split(' ')[0]}
+                          {(currentProject.title || '').split(' ')[0]}
                         </h3>
                       </div>
                     )}
@@ -124,7 +118,7 @@ const ProjectsSection = () => {
                   <div className="mb-10">
                     <h4 className="text-xs uppercase tracking-widest text-gray-500 mb-4 font-semibold">Tech Stack</h4>
                     <div className="flex flex-wrap gap-4">
-                      {currentProject.technologies.map((tech) => (
+                      {(currentProject.technologies || []).map((tech) => (
                         <div key={tech} className="group/tech relative flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 hover:border-[#a78bfa]/50 hover:bg-[#a78bfa]/10 transition-all cursor-help">
                           <div className="text-2xl group-hover/tech:scale-110 group-hover/tech:drop-shadow-[0_0_10px_rgba(167,139,250,0.5)] transition-all">
                             {getTechIcon(tech)}
